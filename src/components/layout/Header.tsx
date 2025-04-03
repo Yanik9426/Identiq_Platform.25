@@ -9,8 +9,7 @@ const Header: React.FC = () => {
   const { currentUser, logout, userRoles } = useAuth();
   const navigate = useNavigate();
 
-  // Removed temporary console.log
-
+  // Logout handler remains the same
   const handleLogout = async () => {
     try {
       await logout();
@@ -42,12 +41,12 @@ const Header: React.FC = () => {
               </span>
 
               {/* --- Display Roles --- */}
-              {/* Check if userRoles is available and has at least one role */}
+              {/* Check if userRoles array exists and is not empty */}
               {userRoles && userRoles.length > 0 && (
                 <span className="text-xs py-0.5 px-1.5 bg-gray-600 rounded font-medium capitalize">
-                  {/* Display the first role found for simplicity */}
+                  {/* Display the first role found. You could adjust this logic */}
+                  {/* e.g., userRoles.join(', ') to show multiple roles */}
                   {userRoles[0]}
-                  {/* Alternative: Display all roles: {userRoles.join(', ')} */}
                 </span>
               )}
 
