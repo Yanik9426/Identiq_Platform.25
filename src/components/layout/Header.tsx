@@ -1,80 +1,72 @@
-// src/components/layout/Header.tsx
+// src/components/layout/Header.tsx - Updated to display roles
 
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate for navigation
-import { useAuth } from '../../contexts/AuthContext'; // Import useAuth hook to access context
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext'; // CHECK PATH if needed
 
-/*
-This is the Header functional component, now updated to show
-login/logout status and provide relevant actions.
-*/
 const Header: React.FC = () => {
-  // Get current user and logout function from authentication context
-  const { currentUser, logout } = useAuth();
-  // Get navigate function for programmatic redirection
+  // Destructure currentUser, logout, and userRoles from context
+  const { currentUser, logout, userRoles } = useAuth();
   const navigate = useNavigate();
 
-  // Define the function to handle user logout
+  // Removed temporary console.log
+
   const handleLogout = async () => {
     try {
-      await logout(); // Call the logout function from context
-      navigate('/login'); // Redirect to the login page after successful logout
+      await logout();
+      navigate('/login');
     } catch (error) {
       console.error('Failed to log out:', error);
-      // Consider adding user-facing error feedback here
     }
   };
 
-  /*
-  The 'return' statement renders the header structure.
-  */
   return (
-    /*
-    Using your original background, text color, and padding.
-    */
     <header className="bg-gray-800 text-white p-4">
-      {/*
-      Container is centered. Added flex utilities for layout:
-      - flex: enables Flexbox.
-      - justify-between: puts space between the logo/title and the auth actions.
-      - items-center: vertically aligns the items in the middle.
-      */
-      }
       <div className="container mx-auto flex justify-between items-center">
 
         {/* Logo / Title Area */}
         <div>
-          {/* Changed the H1 to a Link pointing to the home page */}
           <Link to="/" className="text-xl font-bold hover:text-gray-300">
-             Identiq {/* Updated Placeholder Name */}
+             Identiq
           </Link>
         </div>
 
         {/* Authentication Status / Actions Area */}
-        <div className="flex items-center space-x-4"> {/* Use flex and spacing for the actions */}
+        <div className="flex items-center space-x-4">
           {currentUser ? (
-            // --- Render this block if user IS logged in ---
+            // --- User is Logged In ---
             <>
-              <span className="text-sm hidden sm:inline"> {/* Hide email on extra-small screens if desired */}
-                {currentUser.email} {/* Display the user's email */}
+              {/* Display User Info (Email or Phone) */}
+              <span className="text-sm hidden sm:inline">
+                {currentUser.email || currentUser.phoneNumber}
               </span>
+
+              {/* --- Display Roles --- */}
+              {/* Check if userRoles is available and has at least one role */}
+              {userRoles && userRoles.length > 0 && (
+                <span className="text-xs py-0.5 px-1.5 bg-gray-600 rounded font-medium capitalize">
+                  {/* Display the first role found for simplicity */}
+                  {userRoles[0]}
+                  {/* Alternative: Display all roles: {userRoles.join(', ')} */}
+                </span>
+              )}
+
+              {/* Logout Button */}
               <button
-                onClick={handleLogout} // Call handleLogout when clicked
-                // Basic button styling - adjust as needed
+                onClick={handleLogout}
                 className="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded text-sm font-medium"
               >
                 Logout
               </button>
             </>
           ) : (
-            // --- Render this block if user IS NOT logged in ---
+            // --- User is Logged Out ---
             <>
               <Link to="/login" className="hover:text-gray-300 text-sm font-medium">
                 Login
               </Link>
               <Link
                 to="/signup"
-                // Basic button styling for signup link - adjust as needed
                 className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded text-sm font-medium"
               >
                 Sign Up

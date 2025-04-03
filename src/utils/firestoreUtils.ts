@@ -1,12 +1,13 @@
 // src/utils/firestoreUtils.ts
 
-import { User } from "firebase/auth"; // Import the User type from Firebase Auth
+import { User } from "firebase/auth";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
-import { db } from '../config/firebase'; // Adjust path if your firebase config is elsewhere
+import { db } from '../config/firebase'; // Adjust path if needed
 
 /**
  * Checks if a user document exists in Firestore for the given user UID.
- * If it doesn't exist, it creates a new document with basic information.
+ * If it doesn't exist, it creates a new document with basic information
+ * including a default 'candidate' role.
  *
  * @param user The Firebase Auth User object after successful sign-in/signup.
  */
@@ -30,19 +31,20 @@ export const ensureUserDocumentExists = async (user: User): Promise<void> => {
                 photoURL: user.photoURL || '', // Might be provided by Google/others
                 phoneNumber: user.phoneNumber || null, // Might be provided by phone auth
                 createdAt: serverTimestamp(),
-                // Initialize any other default fields your application needs
-                // e.g., roles: ['user'], preferences: {}, etc.
+                // --- Ensure this line exists ---
+                roles: ['candidate'] // Default role for new users
+                // --- End of check ---
             };
             await setDoc(userDocRef, userData);
-            console.log(`Firestore document created for user ${user.uid}.`);
+            console.log(`Firestore document created for user ${user.uid} with default role.`);
         } else {
-            // Document already exists, no action needed here for now
-            // (Could potentially update 'lastLogin' timestamp here if desired)
+            // Document already exists
             console.log(`Firestore document already exists for user ${user.uid}.`);
+            // Optional: Check/add roles if missing on existing doc (more complex)
         }
     } catch (error) {
         console.error("Error ensuring user document exists in Firestore:", error);
-        // Optionally: throw the error again or handle it more gracefully
-        // throw error; // Re-throw if the calling function needs to know about the failure
+        // Decide if error should be propagated
+        // throw error;
     }
 };
