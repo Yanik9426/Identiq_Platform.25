@@ -7,55 +7,39 @@ import Footer from './components/layout/Footer';
 import './App.css';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
-// --- Import the new components ---
-import DashboardPage from './pages/DashboardPage';   // <-- IMPORT DashboardPage
-import ProtectedRoute from './routes/ProtectedRoute'; // <-- IMPORT ProtectedRoute
+import DashboardPage from './pages/DashboardPage';
+import ProtectedRoute from './routes/ProtectedRoute';
+// --- Import the new HomePage component ---
+import HomePage from './pages/HomePage'; // <-- IMPORT ADDED
 
 function App() {
   return (
-    <div className="App flex flex-col min-h-screen bg-gray-100"> {/* Optional: Added light gray background */}
+    <div className="App flex flex-col min-h-screen bg-gray-100">
       <Header />
-
-      {/* Apply flex-grow to allow this main section to expand */}
-      {/* Added container, automatic horizontal margins, horizontal and vertical padding */}
       <main className="flex-grow container mx-auto px-4 py-8">
         <Routes>
           {/* === Public Routes === */}
-          {/* Everyone can access these */}
-          <Route path="/" element={<div>Home Page Placeholder</div>} />
+          {/* --- Update the route for the Home Page --- */}
+          <Route path="/" element={<HomePage />} /> {/* <-- UPDATED ELEMENT */}
+
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
 
 
           {/* === Protected Routes === */}
-          {/* Only logged-in users can access routes wrapped in ProtectedRoute */}
           <Route
-            path="/dashboard" // The URL path for the dashboard
+            path="/dashboard"
             element={
-              // Wrap the component you want to protect (DashboardPage)
-              // with the ProtectedRoute component
               <ProtectedRoute>
                 <DashboardPage />
               </ProtectedRoute>
             }
           />
-
-          {/* You can add more protected routes here using the same pattern */}
-          {/* Example:
-          <Route
-            path="/settings"
-            element={
-              <ProtectedRoute>
-                <SettingsPage />
-              </ProtectedRoute>
-            }
-          />
-          */}
+          {/* Other routes will be added here later */}
 
         </Routes>
       </main>
-
-      <Footer /> {/* <-- Existing Footer component */}
+      <Footer />
     </div>
   );
 }
