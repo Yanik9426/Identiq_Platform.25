@@ -1,4 +1,4 @@
-// src/App.tsx - Updated for Role-Based Routes
+// src/App.tsx - Added route for profile setup
 
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
@@ -10,8 +10,9 @@ import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import ProtectedRoute from './routes/ProtectedRoute';
 import HomePage from './pages/HomePage';
-// --- Import the Unauthorized page ---
-import UnauthorizedPage from './pages/UnauthorizedPage'; // <-- IMPORT ADDED
+import UnauthorizedPage from './pages/UnauthorizedPage';
+// --- Import the new CandidateProfileSetup page ---
+import CandidateProfileSetup from './pages/CandidateProfileSetup'; // <-- IMPORT ADDED
 
 function App() {
   return (
@@ -23,43 +24,33 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          {/* --- Add route for the Unauthorized page --- */}
-          <Route path="/unauthorized" element={<UnauthorizedPage />} /> {/* <-- ROUTE ADDED */}
+          <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
 
           {/* === Protected Routes === */}
-          {/* Example: Dashboard accessible ONLY by users with the 'candidate' role */}
+          {/* Dashboard accessible only by 'candidate' role */}
           <Route
             path="/dashboard"
             element={
-              // --- Pass allowedRoles prop to ProtectedRoute ---
-              // Only users whose userRoles array includes 'candidate' can access this.
-              <ProtectedRoute allowedRoles={['candidate']}> {/* <-- PROP ADDED */}
+              <ProtectedRoute allowedRoles={['candidate']}>
                 <DashboardPage />
               </ProtectedRoute>
             }
           />
 
-          {/* --- Example for future routes --- */}
-          {/* A route only accessible by company admins */}
-          {/* <Route
-            path="/company/settings"
+          {/* --- Add route for Candidate Profile Setup --- */}
+          {/* This route is also protected and restricted to candidates */}
+          <Route
+            path="/profile-setup" // The URL for the setup flow
             element={
-              <ProtectedRoute allowedRoles={['company_admin']}>
-                <CompanySettingsPage />
+              <ProtectedRoute allowedRoles={['candidate']}> {/* Use ProtectedRoute */}
+                <CandidateProfileSetup /> {/* Render the multi-step component */}
               </ProtectedRoute>
             }
-          /> */}
+          />
 
-          {/* A route accessible by ANY logged-in user (no roles specified) */}
-          {/* <Route
-            path="/my-profile" // Example path
-            element={
-              <ProtectedRoute> // No allowedRoles means only login is checked
-                <UserProfileEditPage />
-              </ProtectedRoute>
-            }
-          /> */}
+          {/* --- Examples for future routes --- */}
+          {/* ... other potential protected routes ... */}
 
         </Routes>
       </main>

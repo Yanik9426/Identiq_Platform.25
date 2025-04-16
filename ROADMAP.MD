@@ -18,13 +18,13 @@ Phase 2: Authentication & User Management (Week 3-4)
 Objective: Implement the authentication system and user profiles.
 Tasks:
 
-[ ] Create AuthContext for state management
-[ ] Implement Firebase Authentication with OTP
-[ ] Add Google Authenticator 2FA option
-[ ] Create login/registration flows
-[ ] Implement role-based access control
-[ ] Add protected routes based on user roles
-[ ] Create user profile forms (7-step process for candidates)
+[X] Create AuthContext for state management
+[X] Implement Firebase Authentication with OTP
+[X] Add Google Authenticator 2FA option
+[X] Create login/registration flows
+[X] Implement role-based access control
+[X] Add protected routes based on user roles
+[X] Create user profile forms (7-step process for candidates)
 Phase 3: Core Database Models & Services (Week 5-6)
 Objective: Set up the database structure and core data services.
 Tasks:
