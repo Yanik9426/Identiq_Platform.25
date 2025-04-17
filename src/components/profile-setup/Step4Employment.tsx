@@ -201,7 +201,7 @@ const Step4Employment = ({ formData, onUpdate, onNext, onBack }: StepProps): JSX
         <span key={tag} className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full inline-flex items-center">
           {tag}
           <button onClick={() => onRemove(tag, setter)} className="ml-1.5 text-blue-500 hover:text-blue-700">
-          <>{FaTimes({ size: "0.8em" })}</>
+            <span>{FaTimes({ size: "0.8em" })}</span>
           </button>
         </span>
       ))}
@@ -278,8 +278,7 @@ const Step4Employment = ({ formData, onUpdate, onNext, onBack }: StepProps): JSX
               {employmentHistory.map((job) => (
                 <div key={job.id} className="p-4 border rounded-md bg-gray-50 relative">
                   <button type="button" onClick={() => handleRemoveExperience(job.id)} className="absolute top-2 right-2 text-red-500 hover:text-red-700" aria-label={`Remove job at ${job.companyName}`} >
-                    {/* WORKAROUND: Wrap icon in span */}
-                    <span><FaTrash /></span>
+                    <span>{FaTrash({ size: "1em" })}</span>
                   </button>
                   <p className="font-medium text-gray-800">{job.position} at {job.companyName}</p>
                   <p className="text-sm text-gray-600">Dates: {job.startDate} to {job.endDate}</p>

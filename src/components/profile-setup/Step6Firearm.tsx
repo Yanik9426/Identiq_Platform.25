@@ -830,8 +830,8 @@ const Step6Firearms = ({
                                 </div>
                                 {/* Actions */}
                                 <div className="flex space-x-2 flex-shrink-0">
-                                    <button type="button" onClick={() => openProficiencyEditor(item.id)} className="p-1 text-indigo-600 hover:text-indigo-800" aria-label={`Edit ${item.category} Proficiency`}> <FaEdit size={16} /> </button>
-                                    <button type="button" onClick={() => removeProficiencyCertificate(item.id)} className="p-1 text-red-600 hover:text-red-800" aria-label={`Remove ${item.category} Proficiency`}> <FaTrash size={16} /> </button>
+                                    <button type="button" onClick={() => openProficiencyEditor(item.id)} className="p-1 text-indigo-600 hover:text-indigo-800" aria-label={`Edit ${item.category} Proficiency`}> <span>{FaEdit({ size: 16 })}</span> </button>
+                                    <button type="button" onClick={() => removeProficiencyCertificate(item.id)} className="p-1 text-red-600 hover:text-red-800" aria-label={`Remove ${item.category} Proficiency`}> <span>{FaTrash({ size: 16 })}</span> </button>
                                 </div>
                             </div>
                         </div>
@@ -947,8 +947,8 @@ const renderCompetencySummaryList = (): JSX.Element => (
                             </div>
                             {/* Actions */}
                             <div className="flex space-x-2 flex-shrink-0">
-                                <button type="button" onClick={() => openCompetencyEditor(item.id)} className="p-1 text-indigo-600 hover:text-indigo-800" aria-label={`Edit ${item.category} Competency`}> <FaEdit size={16} /> </button>
-                                <button type="button" onClick={() => removeCompetencyCertificate(item.id)} className="p-1 text-red-600 hover:text-red-800" aria-label={`Remove ${item.category} Competency`}> <FaTrash size={16} /> </button>
+                                <button type="button" onClick={() => openCompetencyEditor(item.id)} className="p-1 text-indigo-600 hover:text-indigo-800" aria-label={`Edit ${item.category} Competency`}> <span>{FaEdit({ size: 16 })}</span> </button>
+                                <button type="button" onClick={() => removeCompetencyCertificate(item.id)} className="p-1 text-red-600 hover:text-red-800" aria-label={`Remove ${item.category} Competency`}> <span>{FaTrash({ size: 16 })}</span> </button>
                             </div>
                         </div>
                     </div>
@@ -1084,8 +1084,8 @@ const renderAdditionalTrainingSummaryList = (): JSX.Element => {
                                             </div>
                                             {/* Actions */}
                                             <div className="flex space-x-2 flex-shrink-0">
-                                                <button type="button" onClick={() => openAdditionalTrainingEditor(item.id)} className="p-1 text-indigo-600 hover:text-indigo-800" aria-label={`Edit ${item.trainingName}`}> <FaEdit size={16} /> </button>
-                                                <button type="button" onClick={() => removeAdditionalTraining(item.id)} className="p-1 text-red-600 hover:text-red-800" aria-label={`Remove ${item.trainingName}`}> <FaTrash size={16} /> </button>
+                                                <button type="button" onClick={() => openAdditionalTrainingEditor(item.id)} className="p-1 text-indigo-600 hover:text-indigo-800" aria-label={`Edit ${item.trainingName}`}> <span>{FaEdit({ size: 16 })}</span> </button>
+                                                <button type="button" onClick={() => removeAdditionalTraining(item.id)} className="p-1 text-red-600 hover:text-red-800" aria-label={`Remove ${item.trainingName}`}> <span>{FaTrash({ size: 16 })}</span> </button>
                                             </div>
                                         </div>
                                     </div>
