@@ -213,9 +213,9 @@ const securityTechAreaOptions: string[] = [
     "Other Technical Area" // Renamed slightly for clarity
 ];
 // --- Component ---
-const Step5Qualifications: React.FC<Step5QualificationsProps> = ({
+const Step5Qualifications = ({
   formData, onUpdate, onBack, onNext,
-}) => {
+}: Step5QualificationsProps): JSX.Element => {
 
   // --- State --- (Includes Sections 1-5)
   const [disclaimerAccepted, setDisclaimerAccepted] = useState<boolean>(formData?.qualificationsDisclaimerAccepted || false);

@@ -15,9 +15,9 @@ interface Step7AssessmentsProps {
 }
 
 // --- Component ---
-const Step7Assessments: React.FC<Step7AssessmentsProps> = ({
+const Step7Assessments = ({
   formData, onUpdate, onBack, onNext,
-}) => {
+}: Step7AssessmentsProps): JSX.Element => {
 
   // No specific state needed for this introductory page itself
 

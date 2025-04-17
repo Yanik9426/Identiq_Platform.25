@@ -91,9 +91,9 @@ const regulation21Options = [
 
 
 // --- Component ---
-const Step6Firearms: React.FC<Step6FirearmsProps> = ({
+const Step6Firearms = ({
   formData, onUpdate, onBack, onNext,
-}) => {
+}: Step6FirearmsProps): JSX.Element => {
 
   // --- State ---
   const [disclaimerAccepted, setDisclaimerAccepted] = useState<boolean>(formData?.firearmDisclaimerAccepted || false);

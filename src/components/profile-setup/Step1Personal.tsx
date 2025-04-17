@@ -11,7 +11,7 @@ interface StepProps {
 }
 
 // UPDATED: Destructure onUpdate, onNext, onBack from props
-const Step1Personal: React.FC<StepProps> = ({ formData, onUpdate, onNext, onBack }) => {
+const Step1Personal = ({ formData, onUpdate, onNext, onBack }: StepProps): JSX.Element => {
     // --- Local State for Step 1 Fields --- (Remains the same)
     const [firstName, setFirstName] = useState(formData?.firstName || ''); // Added optional chaining for safety
     const [lastName, setLastName] = useState(formData?.lastName || '');

@@ -10,7 +10,7 @@ interface StepProps {
     onBack: () => void;
 }
 
-const Step3Banking: React.FC<StepProps> = ({ formData, onUpdate, onNext, onBack }) => {
+const Step3Banking = ({ formData, onUpdate, onNext, onBack }: StepProps): JSX.Element => {
     // --- Local State for Step 3 Files --- (Added optional chaining for safety)
     // Note: We store the File object locally, but only send filename to parent via onUpdate usually
     const [proofOfBankFile, setProofOfBankFile] = useState<File | null>(null);

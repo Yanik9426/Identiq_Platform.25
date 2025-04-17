@@ -39,7 +39,7 @@ const workTypeOptions = ['Permanent', 'Part-time', 'Contractual'];
 // Define employment type options for job history
 const employmentTypeOptions: JobEntry['employmentType'][] = ['short-term', 'long-term', 'contractual'];
 
-const Step4Employment: React.FC<StepProps> = ({ formData, onUpdate, onNext, onBack }) => {
+const Step4Employment = ({ formData, onUpdate, onNext, onBack }: StepProps): JSX.Element => {
   // --- State ---
   const [hasExperience, setHasExperience] = useState<'yes' | 'no' | ''>(formData?.hasExperience || '');
   const [warningAccepted, setWarningAccepted] = useState<boolean>(formData?.employmentWarningAccepted || false);

@@ -11,7 +11,7 @@ interface StepProps {
 }
 
 // UPDATED: Destructure onUpdate, onNext, onBack from props
-const Step2Residential: React.FC<StepProps> = ({ formData, onUpdate, onNext, onBack }) => {
+const Step2Residential = ({ formData, onUpdate, onNext, onBack }: StepProps): JSX.Element => {
     // --- Local State --- (Added optional chaining for safety)
     const [addressLine1, setAddressLine1] = useState(formData?.addressLine1 || '');
     const [addressLine2, setAddressLine2] = useState(formData?.addressLine2 || '');
