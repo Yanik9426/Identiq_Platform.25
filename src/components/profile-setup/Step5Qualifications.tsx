@@ -1168,7 +1168,7 @@ const removeRoleSpecificQualification = (idToRemove: string) => {
           <p><span className="font-medium text-gray-700">Expires:</span> {psiraDetails?.expiryDate}</p>
           <p className="text-xs text-gray-500 mt-1"> File: {psiraDetails?.fileName ? psiraDetails.fileName : <span className="text-red-500 italic">Missing</span>} </p>
         </div>
-        <button type="button" onClick={openPsiraDetailsEditor} className="ml-4 p-1 text-indigo-600 hover:text-indigo-800" aria-label="Edit PSIRA Details"> <FaEdit size={16} /> </button>
+        <button type="button" onClick={openPsiraDetailsEditor} className="ml-4 p-1 text-indigo-600 hover:text-indigo-800" aria-label="Edit PSIRA Details"> <span>{FaEdit({ size: 16 })}</span> </button>
       </div>
     </div>
   ); // Make sure semicolon is outside parenthesis
