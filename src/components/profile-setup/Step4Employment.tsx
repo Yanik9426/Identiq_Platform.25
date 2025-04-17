@@ -201,7 +201,7 @@ const Step4Employment: React.FC<StepProps> = ({ formData, onUpdate, onNext, onBa
         <span key={tag} className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full inline-flex items-center">
           {tag}
           <button onClick={() => onRemove(tag, setter)} className="ml-1.5 text-blue-500 hover:text-blue-700">
-            <FaTimes size="0.8em"/>
+          <>{FaTimes({ size: "0.8em" })}</>
           </button>
         </span>
       ))}
