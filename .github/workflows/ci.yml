@@ -1,0 +1,50 @@
+# .github/workflows/ci.yml
+
+name: Node.js CI # The name of the workflow, shown in GitHub Actions tab
+
+# Controls when the workflow will run
+on:
+  push: # Run on push events
+    branches: [ main, develop ] # For the main and develop branches
+  pull_request: # Run on pull request events
+    branches: [ main, develop ] # Targeting the main and develop branches
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This job is called "build-and-test"
+  build-and-test:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest # Use the latest version of Ubuntu Linux
+
+    # Define a matrix strategy (optional, useful for testing multiple Node versions)
+    strategy:
+      matrix:
+        node-version: [18.x] # Specify the Node.js version(s) to use. Use the version you are developing with.
+        # You could add more versions like [16.x, 18.x] if needed
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Step 1: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v4 # Use the standard checkout action
+
+      # Step 2: Sets up the specified Node.js version
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4 # Use the standard node setup action
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm' # Cache npm dependencies to speed up subsequent runs
+
+      # Step 3: Install dependencies using npm ci (clean install, uses package-lock.json)
+      - name: Install dependencies
+        run: npm ci # 'ci' is generally faster and safer for continuous integration than 'install'
+
+      # Step 4: Build the project (if a build script exists in package.json)
+      - name: Build project
+        run: npm run build --if-present # Runs 'npm run build' only if it's defined in package.json
+
+      # Step 5: Run tests
+      - name: Run tests
+        run: npm test # Runs the test script defined in package.json
+        env:
+          CI: true # Sets the CI environment variable, often needed by testing frameworks like Jest
