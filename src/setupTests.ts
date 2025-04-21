@@ -1,17 +1,17 @@
-// src/setupTests.ts
 // Import the web API polyfills first
-require(`${process.cwd()}/src/mocks/webAPIs.js`);
+const path = require('path');
+require(path.resolve(__dirname, './mocks/webAPIs.js'));
 
 // Now safe to import testing libraries
 import '@testing-library/jest-dom';
 
 // Create a comprehensive mock for all Firebase modules
 const mockAuth = {
-  currentUser: null
+  currentUser: null,
 };
 
 jest.mock('firebase/app', () => ({
-  initializeApp: jest.fn()
+  initializeApp: jest.fn(),
 }));
 
 jest.mock('firebase/auth', () => ({
@@ -20,7 +20,7 @@ jest.mock('firebase/auth', () => ({
     callback(null);
     return jest.fn(); // Return unsubscribe function
   }),
-  signInWithEmailAndPassword: jest.fn(() => 
+  signInWithEmailAndPassword: jest.fn(() =>
     Promise.resolve({ user: { uid: 'test-uid', email: 'test@example.com' } })
   ),
   signOut: jest.fn(() => Promise.resolve()),
@@ -31,7 +31,7 @@ jest.mock('firebase/auth', () => ({
   sendPasswordResetEmail: jest.fn(() => Promise.resolve()),
   updateEmail: jest.fn(() => Promise.resolve()),
   updatePassword: jest.fn(() => Promise.resolve()),
-  updateProfile: jest.fn(() => Promise.resolve())
+  updateProfile: jest.fn(() => Promise.resolve()),
 }));
 
 jest.mock('firebase/firestore', () => ({
@@ -40,21 +40,21 @@ jest.mock('firebase/firestore', () => ({
     doc: jest.fn(() => ({
       get: jest.fn(() => Promise.resolve({ data: () => ({}), exists: true })),
       set: jest.fn(() => Promise.resolve()),
-      update: jest.fn(() => Promise.resolve())
-    }))
+      update: jest.fn(() => Promise.resolve()),
+    })),
   })),
   doc: jest.fn(),
   getDoc: jest.fn(() => Promise.resolve({ exists: () => true, data: () => ({}) })),
   setDoc: jest.fn(),
-  updateDoc: jest.fn()
+  updateDoc: jest.fn(),
 }));
 
 jest.mock('firebase/storage', () => ({
   getStorage: jest.fn(() => ({})),
   ref: jest.fn(() => ({
     put: jest.fn(() => Promise.resolve()),
-    getDownloadURL: jest.fn(() => Promise.resolve("https://example.com/image.jpg"))
-  }))
+    getDownloadURL: jest.fn(() => Promise.resolve('https://example.com/image.jpg')),
+  })),
 }));
 
 // Any other setup code here
