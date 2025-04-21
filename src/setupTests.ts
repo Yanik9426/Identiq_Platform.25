@@ -1,6 +1,6 @@
 // src/setupTests.ts
 // Import the web API polyfills first
-require('./mocks/webAPIs.js');
+require(`${process.cwd()}/src/mocks/webAPIs.js`);
 
 // Now safe to import testing libraries
 import '@testing-library/jest-dom';
