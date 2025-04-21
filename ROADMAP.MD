@@ -13,7 +13,7 @@ Tasks:
 [X] Implement routing with React Router v6
 [X] Set up styling foundation (TailwindCSS configuration)
 [X] Create basic layout components (Header, Footer, SideNavigation)
-[X] Implement CI/CD with GitHub Actions
+[] Implement CI/CD with GitHub Actions
 Phase 2: Authentication & User Management (Week 3-4)
 Objective: Implement the authentication system and user profiles.
 Tasks:

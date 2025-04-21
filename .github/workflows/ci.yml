@@ -36,7 +36,7 @@ jobs:
 
       # Step 3: Install dependencies using npm ci (clean install, uses package-lock.json)
       - name: Install dependencies
-        run: npm install # <-- Changed from npm ci
+        run: npm ci # <-- Changed back to npm ci
 
       # Step 4: Build the project (if a build script exists in package.json)
       - name: Build project
