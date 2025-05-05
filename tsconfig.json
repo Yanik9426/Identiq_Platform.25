@@ -21,6 +21,9 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src"
-, "jest.setup.js"  ]
+    "src",
+    "jest.setup.js",
+    "Jobs",
+    "scripts"
+  ]
 }
